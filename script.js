@@ -46,5 +46,5 @@ function addToArray() {
 	let author = `${authorName.value}`;
 	let pages = `${pageCount.value}`;
 	let img = `${imageSrc.value}`;
-	library.unshift(new Library(bookName, author, pages, img));
+	book_array.unshift(new Library(bookName, author, pages, img));
 }
