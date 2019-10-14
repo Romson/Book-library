@@ -9,7 +9,6 @@ const myForm = document.querySelector('#myForm'),
 myButton.addEventListener('click', (e) => {
   e.preventDefault();
   addToLibrary();
-  console.log(bookTitle.value);
 });
 
 function addToLibrary() {
@@ -30,4 +29,19 @@ function addToLibrary() {
 
 function deleteFromLibrary(itemToDelete) {
   itemToDelete.parentElement.remove();
+}
+
+class Library {
+  constructor(title, author, pages, image) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.image = image;
+  }
+}
+
+let book_array = [];
+
+function addToArray() {
+  // add book to array of objects
 }
