@@ -3,27 +3,12 @@
 // 	pageCount = document.getElementById("page-count"),
 // 	imageSrc = document.getElementById("image-src");
 
-// document.getElementById("book-form").addEventListener("submit", e => {
-// 	e.preventDefault();
-
-// 	axios
-// 		.post("/add-book", {
-// 			booktitle: bookTitle.value
-// 		})
-// 		.then(response => {
-// 			// Do something here
-// 		})
-// 		.catch(() => {
-// 			console.log("Something went wrong. Try again later");
-// 		});
-// });
-
 function bookInfo(book) {
 	return `<li class="list-group-item list-group-item-action d-flex align-items-center justify-content-between"><div class="item-text mr-4"><img src="${book.image}" width="100px"></div>
-  <div class="item-text mr-auto mt-0">
-    <strong>${book.title}</strong><br>
-    Author: ${book.author}<br>
-    Pages: ${book.pages}<br><br><br><br>
+  <div class="item-text mr-auto mb-auto">
+    <strong><span>${book.title}</span></strong><br>
+    Author: <span>${book.author}</span><br>
+    Pages: <span>${book.pages}</span><br>
   </div>
   <div>
     <button data-id="${book._id}" class="edit-me btn btn-secondary btn-sm mr-1">Edit</button>
@@ -32,10 +17,19 @@ function bookInfo(book) {
 </li>`;
 }
 
-let ulHTML = bookObject
-	.map(book => {
-		return bookInfo(book);
-	})
-	.join("");
+let ulHTML = bookObject.map(book => {
+	return bookInfo(book);
+});
 
 document.getElementById("book-list").insertAdjacentHTML("beforeend", ulHTML);
+
+document.addEventListener("click", e => {
+	// Edit feature
+	if (e.target.classList.contains("edit-me")) {
+		alert(e.target.getAttribute("data-id"));
+	}
+	// Delete feature
+	if (e.target.classList.contains("delete-me")) {
+		alert(e.target.getAttribute("data-id"));
+	}
+});

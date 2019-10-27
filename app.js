@@ -40,3 +40,13 @@ app.post("/add-book", (req, res) => {
 		}
 	);
 });
+
+app.post("/delete-book", (req, res) => {
+	console.log(req.book.id);
+	db.collection("books").deleteOne(
+		{_id: new mongodb.ObjectID(req.body.id)},
+		() => {
+			res.send("Successfully deleted!");
+		}
+	);
+});
