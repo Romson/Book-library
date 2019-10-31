@@ -1,8 +1,3 @@
-// let bookTitle = document.getElementById("book-title"),
-// 	authorName = document.getElementById("author-name"),
-// 	pageCount = document.getElementById("page-count"),
-// 	imageSrc = document.getElementById("image-src");
-
 function bookInfo(book) {
 	return `<li class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
 	
