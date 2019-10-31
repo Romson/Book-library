@@ -4,6 +4,7 @@ const app = express();
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.static("public"));
+app.use(express.json());
 
 app.set("view engine", "ejs");
 
@@ -21,7 +22,6 @@ app.get("/", (req, res) => {
 	db.collection("books")
 		.find()
 		.toArray((err, books) => {
-			console.log(books);
 			res.render("index", {books: books});
 		});
 });
@@ -41,8 +41,19 @@ app.post("/add-book", (req, res) => {
 	);
 });
 
-app.post("/delete-book", (req, res) => {
-	console.log(req.book.id);
+// Edit
+app.post("/edit-title", (req, res) => {
+	db.collection("books").findOneAndUpdate(
+		{_id: new mongodb.ObjectID(req.body.id)},
+		{$set: {title: req.body.title}},
+		() => {
+			res.send("Seccusfully edited!");
+		}
+	);
+});
+
+// Delete
+app.post("/delete-item", (req, res) => {
 	db.collection("books").deleteOne(
 		{_id: new mongodb.ObjectID(req.body.id)},
 		() => {
