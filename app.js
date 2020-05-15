@@ -9,6 +9,11 @@ app.use(express.json());
 app.set("view engine", "ejs");
 
 let db;
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port == 3030;
+}
+
 let connectionString =
   "mongodb+srv://romson:Welcome2020@cluster0-tesing123-ni6rz.mongodb.net/library?retryWrites=true&w=majority";
 mongodb.connect(
@@ -16,7 +21,7 @@ mongodb.connect(
   { useUnifiedTopology: true },
   (err, client) => {
     db = client.db();
-    app.listen(3030, () => {
+    app.listen(port, () => {
       console.log("Server response: Fullstack Library running");
     });
   }
